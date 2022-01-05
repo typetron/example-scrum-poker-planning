@@ -14,9 +14,7 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         socket.errors$.subscribe(error => {
-            console.log('request error ->', error.message)
-            // @ts-ignore TODO remove this ts-ignore
-            this.notification.error(error.message.message, '')
+            this.notification.error(error.message?.message ?? '', '')
         })
     }
 
