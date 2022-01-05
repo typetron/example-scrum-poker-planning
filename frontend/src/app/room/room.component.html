@@ -1,0 +1,87 @@
+<nz-layout class="full-height">
+    <nz-row class="full-height" *ngIf="!room" nzAlign="middle" nzJustify="center">
+        <nz-col>
+            <nz-spin [nzSpinning]="!room" nzSize="large"></nz-spin>
+        </nz-col>
+    </nz-row>
+    <nz-header class="text-center padding-t-medium" *ngIf="room">
+        <nz-row nzAlign="middle">
+            <nz-col nzFlex="1">
+                <h1 class="no-margin">
+                    <span class="clickable" nz-typography nzEditable [(nzContent)]="room.name" (nzContentChange)="roomUpdate$.next($event)">{{room.name}}</span>
+                </h1>
+            </nz-col>
+            <nz-col *ngIf="user">
+                <h3 nz-dropdown [nzDropdownMenu]="menu" nzTrigger="click" class="clickable no-margin">{{user.name}}
+                    <nz-avatar nzIcon="user"></nz-avatar>
+                </h3>
+                <nz-dropdown-menu #menu="nzDropdownMenu">
+                    <ul nz-menu nzSelectable>
+                        <li nz-menu-item (click)="showUserEditModal(user)">Change name</li>
+                        <li nz-menu-item (click)="updateUser({spectator: !user.spectator})">
+                            <nz-row nzGutter="8" nzJustify="space-between">
+                                <nz-col>
+                                    Spectate
+                                </nz-col>
+                                <nz-col>
+                                    <nz-switch [nzControl]="true" [ngModel]="user.spectator"></nz-switch>
+                                </nz-col>
+                            </nz-row>
+                        </li>
+                        <li nz-menu-item (click)="leaveRoom(room.id)">Leave</li>
+                    </ul>
+                </nz-dropdown-menu>
+            </nz-col>
+        </nz-row>
+    </nz-header>
+    <nz-content>
+        <nz-row nzJustify="center" class="container full-height" *ngIf="room">
+            <nz-col>
+                <main>
+                    <nz-row nzJustify="center">
+                        <nz-col>
+                            <p class="text-center" nz-typography nzType="secondary" *ngIf="user?.spectator">
+                                You are a spectator
+                            </p>
+                            <nz-card class="padding-large table">
+                                <button nz-button nzType="primary" nzSize="large" (click)="revealCards(room)" *ngIf="!room.showCards">
+                                    Reveal cards
+                                </button>
+                                <button nz-button nzType="primary" nzSize="large" (click)="resetEstimation(room)" *ngIf="room.showCards">
+                                    Reset estimation
+                                </button>
+                            </nz-card>
+                        </nz-col>
+                    </nz-row>
+
+                    <nz-row [nzGutter]="[24,24]" nzJustify="center" nzAlign="middle">
+                        <nz-col *ngFor="let player of room.users.where('spectator', false)" class="player">
+                            <h3 class="text-center">{{player.name}}</h3>
+                            <nz-card class="text-center card" [class.selected]="!room.showCards && player.card" [class.waitingSelection]="!room.showCards && !player.card">
+                                <h2 *ngIf="room.showCards">{{player.card}}</h2>
+                            </nz-card>
+                        </nz-col>
+
+                    </nz-row>
+                    <nz-row class="margin-t-large">
+                        <nz-col class="text-center">
+                            <h2 *ngIf="!room.showCards">Waiting for votes</h2>
+                            <h2 *ngIf="room.showCards">Average: <b>{{room.users.sum('card') / room.users.length }}</b>
+                            </h2>
+                        </nz-col>
+                    </nz-row>
+                </main>
+
+                <nz-row [nzGutter]="[24,24]" nzJustify="center" nzAlign="middle" *ngIf="user">
+                    <nz-col *ngFor="let card of cards">
+                        <nz-card class="text-center card clickable" (click)="selectCard(user, card)" [class.selected]="findPlayer(user.id)?.card === card">
+                            <h2>{{card}}</h2>
+                        </nz-card>
+                    </nz-col>
+                </nz-row>
+
+            </nz-col>
+        </nz-row>
+    </nz-content>
+</nz-layout>
+

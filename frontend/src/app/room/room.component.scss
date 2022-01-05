@@ -1,0 +1,83 @@
+nz-header {
+    background: transparent;
+    height: auto;
+    line-height: 1;
+}
+
+nz-content {
+    .container {
+        nz-col {
+            max-width: 1024px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+
+            main {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
+                .table {
+                    min-width: 350px;
+                    min-height: 180px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: rgba(0, 112, 251, 0.2);
+                    background-color: rgb(0 112 251 / 30%);
+                    color: #fff;
+
+                    button {
+                        font-weight: bold;
+                        height: auto;
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.player {
+    display: inline-block;
+}
+
+.card {
+    width: 65px;
+    height: 90px;
+    border-color: var(--card-background);
+    border-width: 2px;
+    color: var(--card-background);
+
+    ::ng-deep {
+        .ant-card-body {
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            height: 100%;
+            flex-direction: column;
+        }
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--card-background);
+    }
+
+    &.selected {
+        background-color: var(--card-background);
+        color: #fff;
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #fff;
+        }
+    }
+
+    &.waitingSelection{
+        opacity: 0.5;
+        filter: saturate(0)
+    }
+}

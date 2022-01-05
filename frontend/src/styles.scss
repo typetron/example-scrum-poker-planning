@@ -1,0 +1,125 @@
+@use "sass:math";
+
+$small-spacing: 8px;
+$medium-spacing: 16px;
+$large-spacing: 24px;
+
+$space: (
+    none: 0,
+    small: $small-spacing,
+    medium: $medium-spacing,
+    large: $large-spacing,
+);
+
+
+@each $key, $val in $space {
+    .margin-#{$key} {
+        margin: $val;
+    }
+    .margin-y-#{$key} {
+        margin-top: $val;
+        margin-bottom: $val;
+    }
+    .margin-x-#{$key} {
+        margin-left: $val;
+        margin-right: $val;
+    }
+    .margin-l-#{$key} {
+        margin-left: $val;
+    }
+    .margin-t-#{$key} {
+        margin-top: $val;
+    }
+    .margin-r-#{$key} {
+        margin-right: $val;
+    }
+    .margin-b-#{$key} {
+        margin-bottom: $val;
+    }
+    .padding-#{$key} {
+        padding: $val;
+    }
+    .padding-y-#{$key} {
+        padding-top: $val;
+        padding-bottom: $val;
+    }
+    .padding-x-#{$key} {
+        padding-left: $val;
+        padding-right: $val;
+    }
+    .padding-l-#{$key} {
+        padding-left: $val;
+    }
+    .padding-t-#{$key} {
+        padding-top: $val;
+    }
+    .padding-r-#{$key} {
+        padding-right: $val;
+    }
+    .padding-b-#{$key} {
+        padding-bottom: $val;
+    }
+    .gutter-x-#{$key} {
+        padding-right: math.div($val, 2);
+        padding-left: math.div($val, 2);
+    }
+    .gutter-y-#{$key} {
+        padding-top: math.div($val, 2);
+        padding-bottom: math.div($val, 2);
+    }
+    .gutter-#{$key} {
+        padding: math.div($val, 2);
+    }
+}
+
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.titleCase {
+    text-transform: capitalize;
+}
+
+
+.no-padding {
+    padding: 0;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.cursor-default {
+    cursor: default;
+}
+
+
+.full-width {
+    width: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.ant-dropdown-menu{
+    backdrop-filter: brightness(0.8) blur(10px);
+    overflow: hidden;
+}

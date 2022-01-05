@@ -1,0 +1,16 @@
+<nz-row class="full-height" nzJustify="center" nzAlign="middle" style="margin-top: -150px;">
+    <nz-col>
+        <h1 class="margin-b-large">Create a poker planning room</h1>
+        <form [formGroup]="form" nz-form  (ngSubmit)="createRoom()" class="text-center">
+            <nz-form-item>
+                <nz-form-control nzErrorTip="Please enter a room name">
+                    <nz-input-group>
+                        <input type="text" nz-input formControlName="name" placeholder="Room name" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+            <button nz-button nzType="primary" class="full-width" [nzLoading]="loading">Create room</button>
+        </form>
+    </nz-col>
+</nz-row>
+
