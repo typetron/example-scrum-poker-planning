@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
-import { FormBuilder } from '@typetron/angular'
 import { RegisterForm } from '@Data/Forms/RegisterForm'
+import { FormBuilder } from '../../utils'
 
 @Component({
     selector: 'app-register-player',

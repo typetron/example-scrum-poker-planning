@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core'
-import { FormBuilder } from '@typetron/angular'
 import { UserForm } from '@Data/Forms/UserForm'
 import { User } from '@Data/Models/User'
+import { FormBuilder } from '../../utils'
 
 @Component({
     selector: 'app-edit-user',

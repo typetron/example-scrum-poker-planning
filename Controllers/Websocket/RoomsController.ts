@@ -1,4 +1,4 @@
-import { Controller, Event } from '@Typetron/Router'
+import { Controller, Action } from '@Typetron/Router'
 import { RoomForm } from 'App/Forms/RoomForm'
 import { Room } from 'App/Entities/Room'
 import { Room as RoomModel } from 'App/Models/Room'
@@ -7,7 +7,7 @@ import { WebSocket } from '@Typetron/Router/Websockets'
 
 @Controller('rooms')
 export class RoomsController {
-    @Event()
+    @Action()
     async edit(room: Room, form: RoomEditForm, socket: WebSocket) {
         await room.save(form)
         await room.load('users')
@@ -15,12 +15,12 @@ export class RoomsController {
         return RoomModel.from(room)
     }
 
-    @Event()
+    @Action()
     add(form: RoomForm) {
         return RoomModel.from(Room.create(form))
     }
 
-    @Event()
+    @Action()
     async reset(room: Room, socket: WebSocket) {
         await room.save({showCards: false})
         await room.users.newQuery().update({card: undefined})
@@ -29,7 +29,7 @@ export class RoomsController {
         return RoomModel.from(room)
     }
 
-    @Event()
+    @Action()
     async read(room: Room) {
         await room.load('users')
         return RoomModel.from(room)

@@ -1,8 +1,7 @@
 import { Component } from '@angular/core'
-import { FormBuilder } from '@typetron/angular'
 import { RoomForm } from '@Data/Forms/RoomForm'
 import { RoomService } from '../room.service'
-import { isValid } from '../../utils'
+import { FormBuilder, isValid } from '../../utils'
 import { Router } from '@angular/router'
 
 @Component({

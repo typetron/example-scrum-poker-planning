@@ -1,4 +1,4 @@
-import { Controller, Event } from '@Typetron/Router'
+import { Controller, Action } from '@Typetron/Router'
 import { User as UserModel } from 'App/Models/User'
 import { Room as RoomModel } from 'App/Models/Room'
 import { User } from 'App/Entities/User'
@@ -10,7 +10,7 @@ import { AuthUser } from '@Typetron/Framework/Auth'
 @Controller('users')
 export class UsersController {
 
-    @Event()
+    @Action()
     async edit(@AuthUser() user: User, form: UserForm, socket: WebSocket) {
         await user.save(form)
         await user.load('room.users')

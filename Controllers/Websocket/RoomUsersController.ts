@@ -1,4 +1,4 @@
-import { Controller, Event } from '@Typetron/Router'
+import { Controller, Action } from '@Typetron/Router'
 import { Room } from 'App/Entities/Room'
 import { User } from 'App/Entities/User'
 import { WebSocket } from '@Typetron/Router/Websockets'
@@ -16,7 +16,7 @@ export class RoomUsersController {
     @AuthUser()
     user: User
 
-    @Event()
+    @Action()
     async add(room: Room, socket: WebSocket) {
         socket.subscribe(`rooms.${room.id}`)
         await room.users.save(this.user)
@@ -26,7 +26,7 @@ export class RoomUsersController {
         this.webSocketsProvider.sockets.set(this.user.id, socket)
     }
 
-    @Event()
+    @Action()
     async delete(room: Room, socket: WebSocket) {
         socket.unsubscribe(`rooms.${room.id}`)
         await this.user.save({room: undefined})

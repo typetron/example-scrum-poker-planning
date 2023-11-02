@@ -115,7 +115,7 @@ export class RoomComponent implements OnInit {
         this.modal.create({
             nzTitle: 'Change name',
             nzContent: EditUserComponent,
-            nzComponentParams: {user},
+            nzData: {user},
             nzOnOk: async modal => {
                 await this.usersService.edit(modal.form.value)
             }

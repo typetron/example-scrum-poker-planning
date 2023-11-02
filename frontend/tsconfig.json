@@ -15,7 +15,7 @@
         "strictPropertyInitialization": false,
         "moduleResolution": "node",
         "importHelpers": true,
-        "target": "es2017",
+        "target": "ES2022",
         "module": "es2020",
         "lib": [
             "es2018",
@@ -23,7 +23,7 @@
         ],
         "paths": {
             "@Typetron/*": [
-                "./node_modules/@typetron/framework/*"
+                "../node_modules/@typetron/framework/*"
             ],
             "@Data/Models/*": [
                 "../Models/*"
@@ -33,6 +33,7 @@
             ]
         }
     },
+    "exclude": [".angular"],
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,
         "strictInjectionParameters": true,

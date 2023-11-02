@@ -4,6 +4,7 @@ import { User } from '@Data/Models/User'
 import { socket } from './api'
 import { UserForm } from '@Data/Forms/UserForm'
 import { RegisterForm } from '@Data/Forms/RegisterForm'
+import { Router } from '@angular/router'
 
 @Injectable({
     providedIn: 'root'
@@ -11,6 +12,8 @@ import { RegisterForm } from '@Data/Forms/RegisterForm'
 export class UserService {
 
     user$ = new BehaviorSubject<User | undefined>(undefined)
+
+    constructor(private router: Router) {}
 
     async edit(form: Partial<UserForm>) {
         const user = await socket.request<User>(`users.edit`, {body: form})
@@ -34,6 +37,8 @@ export class UserService {
             this.user$.next(user)
         } catch (e) {
             this.user$.next(undefined)
+            localStorage.removeItem('token')
+            this.router.navigateByUrl('/')
         }
     }
 }

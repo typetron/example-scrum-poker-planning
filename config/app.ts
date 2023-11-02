@@ -7,9 +7,6 @@ export default new AppConfig({
     websocketsPort: 8001,
     environment: 'development',
     debug: true,
-    middleware: [
-        // CorsMiddleware
-    ],
     providers: [
         AppProvider,
         RoutingProvider,
